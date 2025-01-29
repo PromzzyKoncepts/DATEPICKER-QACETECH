@@ -25,7 +25,27 @@ export default function Home() {
   };
   return (
     <div className="">
-      
+      <div className="">
+        <DatePicker
+          selectsRange
+          selected={startDate}
+          startDate={startDate}
+          endDate={endDate}
+          onChange={handleChange}
+          monthsShown={2}
+          shouldCloseOnSelect={false} 
+          onClickOutside={() => setOpen(false)} 
+          open={open}
+          onInputClick={() => setOpen(true)}
+        />
+      </div>
+      <div className="">
+        <button onClick={() => setPresetRange(7)} className="">7 Days</button>
+        <button onClick={() => setPresetRange(15)} className="">15 Days</button>
+        <button onClick={() => setPresetRange(30)} className="">30 Days</button>
+        <button onClick={() => setPresetRange(31)} className="">1 Month</button>
+        <button onClick={() => setPresetRange(90)} className="">3 Months</button>
+      </div>
     </div>
   );
 }
