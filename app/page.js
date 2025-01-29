@@ -16,6 +16,13 @@ export default function Home() {
     setStartDate(start);
     setEndDate(end);
   };
+  const setPresetRange = (days) => {
+    const end = new Date();
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+    setStartDate(start);
+    setEndDate(end);
+  };
   return (
     <div className="">
       
