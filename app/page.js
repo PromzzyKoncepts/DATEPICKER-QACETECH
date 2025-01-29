@@ -2,7 +2,6 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { LuCalendar, LuCalendarDays } from "react-icons/lu";
 
 
 export default function Home() {
@@ -22,14 +21,16 @@ export default function Home() {
   const selectRange = (days, isFuture = false) => {
     const now = new Date();
     const targetDate = new Date();
-    targetDate.setDate(now.getDate() + (isFuture ? days : -days)); // Future or Past
+    targetDate.setDate(now.getDate() + (isFuture ? days : -days)); 
 
     setStartDate(isFuture ? now : targetDate);
     setEndDate(isFuture ? targetDate : now);
   };
+
+
   return (
 
-    <div className="flex flex-col items-c enter justify-cent er h-screen bg-[#f8f8f8]">
+    <div className="flex flex-col items-c enter justify-cent er h-screen bg-[#eaeaea]">
       <div className=" max-w-[50vw]  m-auto ">
 
       <div className="  focus:outline-0 focus:border-0  border-0 outline-0">
@@ -42,18 +43,17 @@ export default function Home() {
           onChange={handleChange}
           monthsShown={2}
           shouldCloseOnSelect={false} 
-          // onClickOutside={() => setOpen(true)} 
           open={open}
-          // onInputClick={() => setOpen(true)}
           fixedHeight
           placeholderText="Select date"
-          icon={<LuCalendar />}
           popperClassName=""
         calendarClassName="  !text-gray-900"
         className=" text-left bg-white shadow-md text-gray-900 px-4 py-2 rounded-lg outline-none focus:ring-1 focus:ring-slate-200"
         />
       </div>
-      <div className="bg-white flex gap-4 text-sm p-5 text-gray-500 ">
+
+      {/* These are shortcut Buttons */}
+      <div className="bg-white flex gap-4 text-sm p-5 text-gray-500 rounded-b-lg">
         <button onClick={() => selectRange(7, false)} className="px-4 py-2 border rounded-xl hover:text-gray-700 hover:bg-slate-100">7 days</button>
         <button onClick={() => selectRange(15, true)} className="px-4 py-2 border rounded-xl hover:text-gray-700 hover:bg-slate-100">15 days</button>
         <button onClick={() => selectRange(30, true)} className="px-4 py-2 border rounded-xl hover:text-gray-700 hover:bg-slate-100">30 days</button>
