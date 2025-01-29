@@ -2,3 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+.react-datepicker__header {
+  background-color: white !important;
+  padding-bottom: 15px !important;
+  border-bottom: 0px !important;
+}
+
+h2 {
+  font-weight: 600 !important;
+}
+
+.react-datepicker {
+  font-family: "Inter", serif !important;
+  border: 0px !important;
+  color: "#fff";
+  margin-top: 10px !important;
+  /* padding: 10px!important; */
+}
+
+.react-datepicker-popper {
+  display: contents !important;
+}
+
+.react-datepicker__tab-loop {
+  padding: 20px !important;
+  width: 100% !important;
+  background-color: white !important;
+  margin-top: 20px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* gap: 4px; */
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  width: 2rem !important;
+  line-height: 2rem !important;
+}
+
+.react-datepicker__week {
+  padding: 5px !important;
+}
+
+.react-datepicker__day {
+  color: gray!important;
+}
+
+.react-datepicker__day--in-range, .react-datepicker__day--selected  {
+  background-color: black!important;
+  color: white!important;
+  
+}
+
+.react-datepicker__day--in-selecting-range {
+  background-color: gray!important;
+  color: white!important;
+  
+}
+
+.react-datepicker__day--keyboard-selected{
+  background-color: gray!important;
+  color: white!important;
+
+}
