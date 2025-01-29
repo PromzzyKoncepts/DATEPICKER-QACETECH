@@ -2,6 +2,8 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { LuCalendar, LuCalendarDays } from "react-icons/lu";
+
 
 export default function Home() {
   // here i defined state for start date
@@ -16,17 +18,23 @@ export default function Home() {
     setStartDate(start);
     setEndDate(end);
   };
-  const setPresetRange = (days) => {
-    const end = new Date();
-    const start = new Date();
-    start.setDate(start.getDate() - days);
-    setStartDate(start);
-    setEndDate(end);
+  // Function to set predefined date ranges
+  const selectRange = (days, isFuture = false) => {
+    const now = new Date();
+    const targetDate = new Date();
+    targetDate.setDate(now.getDate() + (isFuture ? days : -days)); // Future or Past
+
+    setStartDate(isFuture ? now : targetDate);
+    setEndDate(isFuture ? targetDate : now);
   };
   return (
-    <div className="">
-      <div className="">
+
+    <div className="flex flex-col items-c enter justify-cent er h-screen bg-[#f8f8f8]">
+      <div className=" max-w-[50vw]  m-auto ">
+
+      <div className="  focus:outline-0 focus:border-0  border-0 outline-0">
         <DatePicker
+        arrow={false}
           selectsRange
           selected={startDate}
           startDate={startDate}
@@ -34,18 +42,27 @@ export default function Home() {
           onChange={handleChange}
           monthsShown={2}
           shouldCloseOnSelect={false} 
-          onClickOutside={() => setOpen(false)} 
+          // onClickOutside={() => setOpen(true)} 
           open={open}
-          onInputClick={() => setOpen(true)}
+          // onInputClick={() => setOpen(true)}
+          fixedHeight
+          placeholderText="Select date"
+          icon={<LuCalendar />}
+          popperClassName=""
+        calendarClassName="  !text-gray-900"
+        className=" text-left bg-white shadow-md text-gray-900 px-4 py-2 rounded-lg outline-none focus:ring-1 focus:ring-slate-200"
         />
       </div>
-      <div className="">
-        <button onClick={() => setPresetRange(7)} className="">7 Days</button>
-        <button onClick={() => setPresetRange(15)} className="">15 Days</button>
-        <button onClick={() => setPresetRange(30)} className="">30 Days</button>
-        <button onClick={() => setPresetRange(31)} className="">1 Month</button>
-        <button onClick={() => setPresetRange(90)} className="">3 Months</button>
+      <div className="bg-white flex gap-4 text-sm p-5 text-gray-500 ">
+        <button onClick={() => selectRange(7, false)} className="px-4 py-2 border rounded-xl hover:text-gray-700 hover:bg-slate-100">7 days</button>
+        <button onClick={() => selectRange(15, true)} className="px-4 py-2 border rounded-xl hover:text-gray-700 hover:bg-slate-100">15 days</button>
+        <button onClick={() => selectRange(30, true)} className="px-4 py-2 border rounded-xl hover:text-gray-700 hover:bg-slate-100">30 days</button>
+        <button onClick={() => selectRange(31, true)} className="px-4 py-2 border rounded-xl hover:text-gray-700 hover:bg-slate-100">1 month</button>
+        <button onClick={() => selectRange(90, true)} className="px-4 py-2 border rounded-xl hover:text-gray-700 hover:bg-slate-100">3 months</button>
       </div>
+      </div>
+      
+      
     </div>
   );
 }
